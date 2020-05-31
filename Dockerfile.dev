@@ -1,0 +1,14 @@
+#Docker run including port and docker volume (reference to files)
+#pwd - return currect directory path
+#docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app {image id}
+
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
